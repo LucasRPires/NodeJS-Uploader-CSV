@@ -22,6 +22,10 @@ module.exports = class ReaderCSV {
             });
         });
 
+        _.forEach(csvData[0], function(value, key) {
+            csvData[0][key] = value.toLowerCase();
+        });
+
         let header = csvData[0];
         csvReaded = _.drop(csvData, 1);   
 
@@ -32,7 +36,6 @@ module.exports = class ReaderCSV {
 
 function isCSVFile(file) {
     if(file != undefined) {
-        console.log(file);
         let extension = 'csv';
         let mimeFile = file.mimetype.split('/')[1];
         let nameFile = file.originalname.split('.')[1];
