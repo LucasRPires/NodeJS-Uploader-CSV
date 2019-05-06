@@ -38,6 +38,24 @@ module.exports = class ClientRepository {
         });
     }
 
+    async findById (_id) {
+        var sql = "SELECT  * FROM clients WHERE _id = ?";
 
+        return new Promise(function(resolve, reject) {
+            connection.query(sql, [_id], (err, rows) => {
+                resolve(rows);
+            });
+        });
+    }
+
+    async deleteClient (_id) {
+        var sql = "DELETE FROM clients where _id = ?";
+
+        return new Promise(function(resolve, reject) {
+            connection.query(sql, [_id], (err, rows) => {
+                resolve(rows);
+            });
+        });
+    }
 
 }
