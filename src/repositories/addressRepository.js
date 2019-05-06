@@ -12,4 +12,14 @@ module.exports = class AddressRepository {
         });
     } 
 
+    async updateAddress(oToUpdate, idClient) {
+        var sql = "UPDATE address SET district = ?, street = ?, state = ? WHERE idClient = ?";
+
+        return new Promise(function (resolve, reject) {
+            connection.query(sql, [oToUpdate.district, oToUpdate.street, oToUpdate.state, idClient], (err, rows) => {
+                resolve(rows);
+            });
+        });
+    } 
+
 }

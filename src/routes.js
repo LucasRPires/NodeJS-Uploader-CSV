@@ -2,7 +2,7 @@ const multer = require('multer');
 const UploadDataService = require('./services/uploadDataService');
 const ClientService = require('./services/clientService');
 const UserService = require('./services/userService');
- 
+
 var upload = multer({dest: 'uploads/'});
 
  module.exports = function (app) {
@@ -42,8 +42,7 @@ var upload = multer({dest: 'uploads/'});
             let uploadDataService = new UploadDataService;
             res.json(await uploadDataService.uploadPayload(req));
         } catch (error) {
-            console.log(error);
-            // res.status(error.code).json({ error: error.message});
+            res.status(error.code).json({ error: error.message});
         }
     });
 
@@ -170,9 +169,54 @@ var upload = multer({dest: 'uploads/'});
             let userService = new UserService();
             res.json(await userService.deleteUser(req.params._id));
         } catch (error) {
-            console.log(error);
-            // res.status(error.code).json({ error: error.message});            
+            res.status(error.code).json({ error: error.message});            
         }
     });
+
+    /**
+     * @swagger
+     * /updateClient/{_id}:
+     *   put:
+     *     summary: Update Client
+     *     description: Update Client by id
+     *     tags:
+     *       - updateClient
+     *     parameters:
+     *       - in: path
+     *         name: _id
+     *         type: string
+     *         description: id collection
+     *       - in: body
+     *         name: updateClient
+     *         type: object
+     *         description: file to upload.
+     *     responses:
+     *       200:
+     *         description: User Deleted
+     *         schema:
+     *           type: object
+     *           properties:
+     *             _id:
+     *               type: string
+     *             date_sent:
+     *               type: string
+     *               format: date-time
+     *             name:
+     *               type: string
+     *             status:
+     *               type: string
+     */
+    app.put('/updateClient/:_id', async function(req, res) {
+        // {"name": "xuxa", "cep": "80420-190", "cpf": "06509861882"}
+        try {
+            let _id = req.params._id;
+            let updateClient = req.body;
+            let clientService = new ClientService();
+            res.json(await clientService.updateClient(_id, updateClient));
+        } catch (error) {
+            res.status(error.code).json({ error: error.message});            
+        }
+    });
+    
  };
  

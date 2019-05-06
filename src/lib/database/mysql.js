@@ -13,7 +13,6 @@ module.exports = function () {
 
     connection.connect(function (err) {
         if (err) return console.log(err);
-        console.log("Banco " + process.env.MYSQL_DATABASE + " conectado com sucesso.");
     });
 
     return connection;
