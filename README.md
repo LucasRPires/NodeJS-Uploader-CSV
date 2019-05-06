@@ -39,6 +39,12 @@ MYSQL_PORT=3306
 http://localhost:3000/api-docs/
 ```
 
+### 1.5 Acesse a raiz do projeto. Importe o arquivo para o Mysql:
+
+```
+database.sql
+```
+
 ## 2. Desevolvimento do projeto
 
 - O projeto em questão foi desenvolvido utilizando boas práticas de programação. 
