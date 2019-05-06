@@ -58,4 +58,14 @@ module.exports = class ClientRepository {
         });
     }
 
+    async updateClient (_id, updateClient) {
+        var sql = "UPDATE clients SET name = ? , cep = ?, cpf = ?, date_sent = ? WHERE _id = ?";
+
+        return new Promise(function(resolve, reject) {
+            connection.query(sql, [updateClient.name, updateClient.cep, updateClient.cpf , new Date(), _id], (err, rows) => {
+                resolve(rows);
+            });
+        });
+    }
+
 }

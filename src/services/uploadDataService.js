@@ -65,7 +65,7 @@ module.exports = class UploadDataService {
 }
 
 function trimFields(value) {
-    return value.replace('.', '').replace('-', '');
+    return value.replace(/[^\w\s]/gi, '');
 }
 
 function splitCSV(fileName) {
