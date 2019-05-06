@@ -13,11 +13,11 @@ module.exports = class UserRepository {
     }
 
     async createUser(oToCreate) {
-        var sql = "INSERT INTO user (_id, name) value (?,?)";
+        var sql = "INSERT INTO users (_id, name) value (?,?)";
 
         return new Promise(function (resolve, reject) {
-            connection.query(sql, [oToCreate.userName, oToCreate.userCode], (err, rows) => {
-                resolve(rows);
+            connection.query(sql, [oToCreate.userCode, oToCreate.userName], (err, rows) => {
+                resolve(oToCreate.userCode);
             });
         });
     }

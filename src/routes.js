@@ -1,5 +1,6 @@
 const multer = require('multer');
 const UploadDataService = require('./services/uploadDataService');
+const UserService = require('./services/userService');
  
 var upload = multer({dest: 'uploads/'});
 
@@ -38,8 +39,7 @@ var upload = multer({dest: 'uploads/'});
     app.post('/uploadData', upload.single('upfile'), async function(req, res) {
         try {
             let uploadDataService = new UploadDataService;
-            let response = await uploadDataService.uploadPayload(req);
-            res.json(response);
+            res.json(await uploadDataService.uploadPayload(req));
         } catch (error) {
             res.status(error.code).json({ error: error.message});
         }
@@ -47,14 +47,14 @@ var upload = multer({dest: 'uploads/'});
 
     /**
      * @swagger
-     * /findData:
+     * /findClients:
      *   get:
      *     summary: Find Data
-     *     description: Find an object data by id
+     *     description: Find clients array
      *     tags:
-     *       - findData
+     *       - findClients
      *     parameters:
-     *       - in: path
+     *       - in: query
      *         name: _id
      *         type: string
      *         description: id collection
@@ -87,8 +87,8 @@ var upload = multer({dest: 'uploads/'});
      *                          state:
      *                              type: string
      */
-    app.get('/uploadData', function(req, res) {
-        res.end('Esse é um teste de usuarios');
+    app.get('/findClients', function(req, res) {
+
     });
  };
  
