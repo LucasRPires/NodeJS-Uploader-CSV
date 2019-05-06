@@ -41,8 +41,8 @@ module.exports = class UploadDataService {
         
         _.forEach(dataRead.values, async function(value, key) {
             let oCreateClient = { name: value[nameIndex], 
-                                  cpf: value[cpfIndex],
-                                  cep: value[cepIndex],
+                                  cpf: trimFields(value[cpfIndex]),
+                                  cep: trimFields(value[cepIndex]),
                                   date_sent: new Date(),
                                   idUser: userId 
                                 }
@@ -54,7 +54,7 @@ module.exports = class UploadDataService {
 
         var data = { _id: userId,
                      name: userSplited.userName,
-                     date_sent: oCreateClient.date_sent,
+                     date_sent: new Date(),
                      file_name: req.file.originalname,
                      status: 'upload_complete'
                 };

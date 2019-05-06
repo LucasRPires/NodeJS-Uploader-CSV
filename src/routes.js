@@ -1,6 +1,6 @@
 const multer = require('multer');
 const UploadDataService = require('./services/uploadDataService');
-const UserService = require('./services/userService');
+const ClientService = require('./services/clientService');
  
 var upload = multer({dest: 'uploads/'});
 
@@ -41,7 +41,8 @@ var upload = multer({dest: 'uploads/'});
             let uploadDataService = new UploadDataService;
             res.json(await uploadDataService.uploadPayload(req));
         } catch (error) {
-            res.status(error.code).json({ error: error.message});
+            console.log(error);
+            // res.status(error.code).json({ error: error.message});
         }
     });
 
@@ -50,7 +51,7 @@ var upload = multer({dest: 'uploads/'});
      * /findClients:
      *   get:
      *     summary: Find Data
-     *     description: Find clients array
+     *     description: Find an object data by id
      *     tags:
      *       - findClients
      *     parameters:
@@ -87,8 +88,13 @@ var upload = multer({dest: 'uploads/'});
      *                          state:
      *                              type: string
      */
-    app.get('/findClients', function(req, res) {
-
+    app.get('/findClients', async function(req, res) {
+        try {
+            let clientService = new ClientService();
+            res.json(await clientService.findClientsByUser(req.query._id));
+        } catch (error) {
+            res.status(error.code).json({ error: error.message});            
+        }
     });
  };
  
