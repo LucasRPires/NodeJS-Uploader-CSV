@@ -1,4 +1,5 @@
 const connection = require('../lib/database/mysql')();
+var _ = require('lodash');
 
 module.exports = class ClientRepository {
 
@@ -11,6 +12,31 @@ module.exports = class ClientRepository {
             });
         });
     } 
+
+    async findClientsByUser (_id) {
+        var sql = "SELECT  c._id, c.name, c.cep, c.cpf, c.date_sent, a.district, a.street, a.state "+
+                  "FROM clients c INNER JOIN address a on c._id = a.idClient WHERE c.idUser = ?";
+
+        return new Promise(function(resolve, reject) {
+            connection.query(sql, [_id], (err, rows) => {
+                let response = [];
+                _.forEach(rows, function(value, key) {
+                    let data = { _id: value._id, 
+                             name: value.name,
+                             CEP: value.cep,
+                             CPF: value.cpf,
+                             date_sent: value.date_sent,
+                             address: {
+                                 district: value.district,
+                                 street: value.street,
+                                 state: value.state
+                             }};
+                    response.push(data);
+                });
+                resolve(response);
+            });
+        });
+    }
 
 
 
