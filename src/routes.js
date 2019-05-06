@@ -1,6 +1,7 @@
 const multer = require('multer');
 const UploadDataService = require('./services/uploadDataService');
 const ClientService = require('./services/clientService');
+const UserService = require('./services/userService');
  
 var upload = multer({dest: 'uploads/'});
 
@@ -94,6 +95,83 @@ var upload = multer({dest: 'uploads/'});
             res.json(await clientService.findClientsByUser(req.query._id));
         } catch (error) {
             res.status(error.code).json({ error: error.message});            
+        }
+    });
+
+    /**
+     * @swagger
+     * /deleteClient/{_id}:
+     *   delete:
+     *     summary: Delete client
+     *     description: Delete client by id
+     *     tags:
+     *       - deleteClient
+     *     parameters:
+     *       - in: path
+     *         name: _id
+     *         type: string
+     *         description: id collection
+     *     responses:
+     *       200:
+     *         description: Client Deleted
+     *         schema:
+     *           type: object
+     *           properties:
+     *             _id:
+     *               type: string
+     *             date_sent:
+     *               type: string
+     *               format: date-time
+     *             name:
+     *               type: string
+     *             status:
+     *               type: string
+     */
+    app.delete('/deleteClient/:_id', async function(req, res) {
+        try {
+            let clientService = new ClientService();
+            res.json(await clientService.deleteClient(req.params._id));
+        } catch (error) {
+            res.status(error.code).json({ error: error.message});            
+        }
+    });
+
+    /**
+     * @swagger
+     * /deleteUser/{_id}:
+     *   delete:
+     *     summary: Delete User
+     *     description: Delete User by id
+     *     tags:
+     *       - deleteUser
+     *     parameters:
+     *       - in: path
+     *         name: _id
+     *         type: string
+     *         description: id collection
+     *     responses:
+     *       200:
+     *         description: User Deleted
+     *         schema:
+     *           type: object
+     *           properties:
+     *             _id:
+     *               type: string
+     *             date_sent:
+     *               type: string
+     *               format: date-time
+     *             name:
+     *               type: string
+     *             status:
+     *               type: string
+     */
+    app.delete('/deleteUser/:_id', async function(req, res) {
+        try {
+            let userService = new UserService();
+            res.json(await userService.deleteUser(req.params._id));
+        } catch (error) {
+            console.log(error);
+            // res.status(error.code).json({ error: error.message});            
         }
     });
  };
