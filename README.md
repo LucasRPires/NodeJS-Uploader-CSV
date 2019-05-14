@@ -1,7 +1,7 @@
 # NodeJS Upload-CSV-File
 
 ## Descrição do Projeto
-O repo trata-se de um sistema para upload de arquivos .csv para persistencia de dados em uma base de dados Mysql.
+O repo trata-se de um sistema para upload de arquivos .csv para persistencia de dados em uma base Mysql.
 
 ## 1. Como instalar e testar
 
