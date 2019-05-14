@@ -11,19 +11,19 @@ O repo trata-se de um sistema para upload de arquivos .csv para persistencia de 
 - Mysql (Banco de dados) versão 14.14
 
 ### O projeto conta algumas bibliotecas instaladas via NPM.
-### 1. Acesse a pasta do projeto e digite o comando: 
+#### 1.1 Acesse a pasta do projeto e digite o comando: 
 
 ```
 npm install / npm i
 ```
 
-#### 1.2. Para rodar o projeto em sua máquina: 
+#### 1.2 Para rodar o projeto em sua máquina: 
 
 ```
 node app.js / nodemon app.js
 ```
 
-#### 1.3. Acesse o diretório raiz do projeto até o arquivo .env! Configure as variáveis de ambiente do MYSQL> EX:
+#### 1.3 Acesse o diretório raiz do projeto até o arquivo .env! Configure as variáveis de ambiente do MYSQL> EX:
 
 ```
 MYSQL_HOST=localhost
@@ -33,7 +33,7 @@ MYSQL_DATABASE=database
 MYSQL_PORT=3306
 ```
 
-#### 1.4. O projeto estará rodando na porta 3000. Link para Interface de documentação da API.
+#### 1.4 O projeto estará rodando na porta 3000. Link para Interface de documentação da API.
 
 ```
 http://localhost:3000/api-docs/
