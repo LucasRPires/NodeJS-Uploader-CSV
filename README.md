@@ -47,13 +47,11 @@ database.sql
 
 ## 2. Desevolvimento do projeto
 
-- O projeto em questão foi desenvolvido utilizando boas práticas de programação. 
-- Repository and Service pattern.
-- Clean Code.
-
-- Utilização da boa prática GitFlow para manipulação e versionamento do sistema.
-
-- Alguma bibliotecas utilizadas:
+ * O projeto em questão foi desenvolvido utilizando boas práticas de programação. 
+ * Repository and Service pattern.
+ * Clean Code.
+ * Utilização da boa prática GitFlow para manipulação e versionamento do sistema.
+ * Alguma bibliotecas utilizadas:
  * express
  * lodash
  * nodemon 
@@ -62,7 +60,5 @@ database.sql
  * fast-csv
  * dotenv
  * body-parser
- 
- - Sistema Operacional Utilizado (macOs Mojave v.10.14)
- 
- - IDE Utilizada: Visual Studio Code (Microsoft)
+ * Sistema Operacional Utilizado (macOs Mojave v.10.14)
+ * IDE Utilizada: Visual Studio Code (Microsoft)
